@@ -10,7 +10,7 @@
 
 const image = document.getElementById("image");
 console.log(image);
-const name = document.getElementById("name");
+const pokename = document.getElementById("name");
 const element = document.getElementById("element");
 const weight = document.getElementById("weight");
 const height = document.getElementById("height");
@@ -61,6 +61,14 @@ const fetchAlakazamData = async () => {
     const response = await fetch('https://pokeapi.co/api/v2/pokemon/65/');
     const data = await response.json();
     console.log(data);
+    // Updating image
+    image.src = data.sprites.front_default;
+    // Updating table contents
+    pokename.innerHTML = data.name.toUpperCase();
+    element.innerHTML = data.stats[0].base_stat;
+    weight.innerHTML = data.weight;
+    height.innerHTML = data.height;
+    types.innerHTML = data.types.map(type => type.type.name).join(', ').toUpperCase();
   } catch (error) {
     console.error(error);
   }
