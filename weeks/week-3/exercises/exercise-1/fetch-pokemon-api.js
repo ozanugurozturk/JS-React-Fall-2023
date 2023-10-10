@@ -23,7 +23,7 @@ const types = document.getElementById("types");
 
 const fetchPokemons = async () => {
   try {
-    const response = await fetch('https://pokeapi.co/api/v2/pokemon/');
+    const response = await fetch('https://pokeapi.co/api/v2/pokemon/?limit=151');
     const data = await response.json();
     console.log(data.results);
     console.log(data.results[0].name);
@@ -56,9 +56,17 @@ fetchPokemons();
 //    function (change the function's name to fit your pokemon).
 //    Log the data in the console and see what you find.
 
-const fetchCharizardData = async () => {
-  
+const fetchAlakazamData = async () => {
+  try {
+    const response = await fetch('https://pokeapi.co/api/v2/pokemon/65/');
+    const data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
 };
+
+fetchAlakazamData();
 
 // 5) After familiarizing with the data, we will use the data
 //    to change our table. We will give you the image as a start.
