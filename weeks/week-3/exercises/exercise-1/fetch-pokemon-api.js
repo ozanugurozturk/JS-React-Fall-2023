@@ -56,9 +56,9 @@ fetchPokemons();
 //    function (change the function's name to fit your pokemon).
 //    Log the data in the console and see what you find.
 
-const fetchAlakazamData = async () => {
+const fetchPikachuData = async () => {
   try {
-    const response = await fetch('https://pokeapi.co/api/v2/pokemon/65/');
+    const response = await fetch('https://pokeapi.co/api/v2/pokemon/25/');
     const data = await response.json();
     console.log(data);
     // Updating image
@@ -74,7 +74,7 @@ const fetchAlakazamData = async () => {
   }
 };
 
-fetchAlakazamData();
+fetchPikachuData();
 
 const fetchRandomPokemon = async () => {
   try {
