@@ -76,6 +76,47 @@ const fetchAlakazamData = async () => {
 
 fetchAlakazamData();
 
+const fetchRandomPokemon = async () => {
+  try {
+    let randomNumber = getRandomInt(151); // Use 151 to include 0 to 150
+    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${randomNumber}/`);
+    const data = await response.json();
+    console.log(data);
+
+    // Attempt for Strength
+    const statsArray = data.stats;
+    let statsString = "";
+    for (const stat of statsArray) {
+      const statName = stat.stat.name.toUpperCase(); // Convert the stat name to uppercase
+      const statValue = stat.base_stat;
+      statsString += `${statName}: ${statValue}<br>`;
+    }
+
+    // Updating image
+    image.src = data.sprites.front_default;
+    // Updating table contents
+    pokename.innerHTML = data.name.toUpperCase(); // Update the correct element
+    element.innerHTML = statsString; // Update the correct element
+    weight.innerHTML = data.weight;
+    height.innerHTML = data.height;
+    types.innerHTML = data.types.map(type => type.type.name).join(', ').toUpperCase();
+
+    
+
+
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * (max + 1));
+}
+
+function handleButtonClick() {
+  fetchRandomPokemon();
+}
+
 // 5) After familiarizing with the data, we will use the data
 //    to change our table. We will give you the image as a start.
 //    If you named the data something else than json, you change the
